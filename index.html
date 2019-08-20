@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="./dist/index.js"></script>
+    <script type="text/javascript">
+        var account = null;
+        function login() {
+            window.HarmonySample.login().then(res => {
+                account = res;
+                document.getElementById("loginDiv").innerHTML = JSON.stringify(account);
+            }).catch(e => {
+                console.log(e);
+                alert(e);
+            })
+        }
+        function balance() {
+            if (!account) {
+                alert("Please login first");
+                return;
+            }
+            window.HarmonySample.balance(account.address).then(res => {
+                document.getElementById("balanceDiv").innerHTML = res;
+            }).catch(e => {
+                console.log(e);
+                alert(e);
+            })
+        }
+        function transfer() {
+            if (!account) {
+                alert("Please login first");
+                return;
+            }
+            window.HarmonySample.transfer(account.address, "one14ynnne6utk29v7cccrw9nng20fxn2sm8fh42my", "1")
+                .then(([t, hash]) => {
+                    console.log(hash);
+                    document.getElementById("transferDiv").innerHTML = "Tx Hash -> " + hash;
+                })
+                .catch(e => {
+                    alert(e);
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <div id="loginDiv"></div></br>
+    <button type="button" onclick="login()">login</button>
+    <div id="balanceDiv"></div></br>
+    <button type="button" onclick="balance()">query balance</button>
+    <div id="transferDiv"></div></br>
+    <button type="button" onclick="transfer()">Transfer</button>
+
+    </br>
+</body>
+
+</html>
