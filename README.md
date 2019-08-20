@@ -1,4 +1,4 @@
-# math-substratejs
+# math-harmony
 
 ### Compile
 
