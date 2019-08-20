@@ -38,7 +38,7 @@ class HarmonySample {
 		// Blockchain
 		const harmony = new Harmony(rpcUrl, config);
 		const txnObject = {
-			// from,
+			from,
 			to,
 			value: new harmony.utils.Unit(amount).asEther().toWei(),
 			gasLimit: '210000',
