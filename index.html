@@ -36,11 +36,10 @@
             }
             window.HarmonySample.transfer(account.address, "one14ynnne6utk29v7cccrw9nng20fxn2sm8fh42my", "1")
                 .then(([t, hash]) => {
-                    console.log(hash);
                     document.getElementById("transferDiv").innerHTML = "Tx Hash -> " + hash;
                 })
                 .catch(e => {
-                    alert(e);
+                    alert(JSON.stringify(e));
                 });
         }
     </script>

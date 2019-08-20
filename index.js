@@ -38,7 +38,7 @@ class HarmonySample {
 		// Blockchain
 		const harmony = new Harmony(rpcUrl, config);
 		const txnObject = {
-			from,
+			// from,
 			to,
 			value: new harmony.utils.Unit(amount).asEther().toWei(),
 			gasLimit: '210000',
@@ -47,12 +47,10 @@ class HarmonySample {
 
 		const txn = harmony.transactions.newTx(txnObject);
 		const signed = await window.harmony.signTransaction(txn);
+		console.log(JSON.stringify(signed));
+
 		return signed.sendTransaction();
 	}
-
-
-
-
 
 
 	/***
