@@ -9,11 +9,6 @@ npm run webpack
 
 ### Harmony Web3 API
 ```javascript
-	// Current harmony network information
-	// network = { chain_url, net_version }
-	 const network = window.harmony.network; 
-```
-```javascript
         /***
 	 * login
 	 * @return account {"address":"one1...","name":"cc1"}
