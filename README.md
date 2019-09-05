@@ -45,9 +45,30 @@ npm run webpack
 		};
 		// Blockchain
 		const harmony = new Harmony(rpcUrl, config);
+		
+		// Shards
+		const shardsResponse = await harmony.blockchain.getShardingStructure();
+		const shards = shardsResponse.result;
+		// result = [
+		//	    {
+		//	      shardID: 0,
+		//	      http: 'http://localhost:9500',
+		//	      ws: 'ws://localhost:9800',
+		//	    },
+		//	    {
+		//	      shardID: 1,
+		//	      http: 'http://localhost:9501',
+		//	      ws: 'ws://localhost:9801',
+		//	    },
+		//	 ];
+		
+		// use first shard
+		const useShard = shards[0];
+		
+		// Transaction
 		const txnObject = {
-			from,
-			to,
+			`${from}_${useShard.shardID}`,
+			`${to}_${useShard.shardID}`,
 			value: new harmony.utils.Unit(amount).asEther().toWei(),
 			gasLimit: '210000',
 			gasPrice: new harmony.utils.Unit('100').asGwei().toWei(),
