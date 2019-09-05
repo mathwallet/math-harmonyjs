@@ -26,8 +26,8 @@ npm run webpack
 	}
 	/***
 	 * Transfer
-	 * @param from from
-	 * @param to to
+	 * @param from from(bech32)
+	 * @param to to(bech32)
 	 * @param amount amount
 	 * @return hash
 	 */
