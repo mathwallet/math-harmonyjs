@@ -83,5 +83,5 @@ npm run webpack
 
 Download MathWallet Extesion
 
-https://medishares-cn.oss-cn-hangzhou.aliyuncs.com/extension/mathwalletplus-v2.0.2.zip
+https://medishares-cn.oss-cn-hangzhou.aliyuncs.com/extension/mathwalletplus-v2.0.4.zip
 
