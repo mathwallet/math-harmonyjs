@@ -37,7 +37,7 @@ npm run webpack
 	 * @return hash
 	 */
 	async transfer(from, to, amount) {
-		const rpcUrl = "http://54.201.38.205:9500";
+		const rpcUrl = "http://s0.b.hmny.io:9500";
 		// Harmony config
 		const config = {
 			chainType: ChainType.Harmony,
