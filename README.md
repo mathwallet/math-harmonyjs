@@ -69,7 +69,7 @@ npm run webpack
 			gasPrice: new harmony.utils.Unit('100').asGwei().toWei(),
 		};
 
-		const txn = harmony.transactions.newTx(txnObject);
+		const txn = harmony.transactions.newTx(txnObject,true);
 		const signed = await window.harmony.signTransaction(txn);
 		return signed.sendTransaction();
 	}
