@@ -1,10 +1,18 @@
 
-import { Harmony } from '@harmony-js/core';
-import { ChainID, ChainType, hexToNumber } from '@harmony-js/utils';
+import { HarmonyExtension } from '@harmony-js/core';
+import { ChainID, ChainType, hexToNumber, Unit } from '@harmony-js/utils';
 import { fromBech32 } from '@harmony-js/crypto';
+
+// Harmony config
+const config = {
+	chainType: ChainType.Harmony,
+	chainUrl:"https://api.s0.t.hmny.io",
+	chainId:ChainID.EthMainnet
+};
 
 // Samples
 class HarmonySample {
+
 	/***
 	 * login
 	 * @return account {"address":"one1wus0h29gmf48wzyxze6g85fh82l4a7s4fu3y9q","name":"cc1"}
@@ -14,8 +22,9 @@ class HarmonySample {
 		if (!window.harmony) {
 			throw new Error("Please install the MathWallet first");
 		}
+		const harmonyExt = new HarmonyExtension(window.harmony, config);
 		// Account
-		const account = await window.harmony.getAccount();
+		const account = await harmonyExt.wallet.getAccount();
 		// Use address
 		const { address, name } = account;
 
@@ -29,27 +38,21 @@ class HarmonySample {
 	 * @return hash
 	 */
 	async transfer(from, to, amount) {
-		const rpcUrl = "http://54.201.38.205:9500";
-		// Harmony config
-		const config = {
-			chainType: ChainType.Harmony,
-			chainUrl: rpcUrl
-		};
-		// Blockchain
-		const harmony = new Harmony(rpcUrl, config);
+		const harmonyExt = new HarmonyExtension(window.harmony, config);
+
+		const fromShard = 0;
+		const toShard = 0;
 		const txnObject = {
-			from,
-			to,
-			value: new harmony.utils.Unit(amount).asEther().toWei(),
-			gasLimit: '210000',
-			gasPrice: new harmony.utils.Unit('100').asGwei().toWei(),
+			from:from + "-" + fromShard,
+			to:to + "-" + toShard,
+			value: Unit.Ether(amount).toWei(),
+			gasLimit: Unit.Wei('21000').toWeiString(),
+			gasPrice: Unit.Gwei('2').toWeiString()
 		};
-
-		const txn = harmony.transactions.newTx(txnObject);
-		const signed = await window.harmony.signTransaction(txn);
-		console.log(JSON.stringify(signed));
-
+		const txn = harmonyExt.transactions.newTx(txnObject,true);
+		const signed = await harmonyExt.wallet.signTransaction(txn);
 		return signed.sendTransaction();
+
 	}
 
 
@@ -59,14 +62,8 @@ class HarmonySample {
 	 * @return balance
 	 */
 	async balance(bech32Address) {
-		const rpcUrl = "http://54.201.38.205:9500";
-		// Harmony config
-		const config = {
-			chainType: ChainType.Harmony,
-			chainUrl: rpcUrl
-		};
 		// Address prase
-		const hexAddress = fromBech32(bech32Address, "one");
+		const hexAddress = fromBech32(bech32Address);
 
 		// Blockchain
 		const harmony = new Harmony(rpcUrl, config);

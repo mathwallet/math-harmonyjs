@@ -34,12 +34,12 @@
                 alert("Please login first");
                 return;
             }
-            window.HarmonySample.transfer(account.address, "one14ynnne6utk29v7cccrw9nng20fxn2sm8fh42my", "1")
+            window.HarmonySample.transfer(account.address, "one1wus0h29gmf48wzyxze6g85fh82l4a7s4fu3y9q", "0.0001")
                 .then(([t, hash]) => {
                     document.getElementById("transferDiv").innerHTML = "Tx Hash -> " + hash;
                 })
                 .catch(e => {
-                    alert(JSON.stringify(e));
+                    alert(e.message);
                 });
         }
     </script>
