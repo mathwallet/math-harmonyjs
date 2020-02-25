@@ -1,5 +1,5 @@
 
-import { HarmonyExtension } from '@harmony-js/core';
+import { Harmony,HarmonyExtension } from '@harmony-js/core';
 import { ChainID, ChainType, hexToNumber, Unit } from '@harmony-js/utils';
 import { fromBech32 } from '@harmony-js/crypto';
 
@@ -29,6 +29,16 @@ class HarmonySample {
 		const { address, name } = account;
 
 		return account;
+	}
+	
+	/***
+	 * Forget Identity
+	 * @return account {"address":"one1...","name":"cc1"}
+	 */
+	async forgetIdentity() {
+		// sign out
+		const success = await window.harmony.forgetIdentity();
+		return success;
 	}
 	/***
 	 * Transfer

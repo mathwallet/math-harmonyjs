@@ -9,7 +9,7 @@ npm run webpack
 
 ### Harmony Web3 API
 ```javascript
-        /***
+     /***
 	 * login
 	 * @return account {"address":"one1...","name":"cc1"}
 	 */
@@ -23,6 +23,15 @@ npm run webpack
 		const { address, name } = account;
 
 		return account;
+	}
+	/***
+	 * Forget Identity
+	 * @return account {"address":"one1...","name":"cc1"}
+	 */
+	async forgetIdentity() {
+		// sign out
+		const success = await window.harmony.forgetIdentity();
+		return success;
 	}
 	/***
 	 * Transfer

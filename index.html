@@ -36,7 +36,7 @@
             }
             window.HarmonySample.transfer(account.address, "one1wus0h29gmf48wzyxze6g85fh82l4a7s4fu3y9q", "0.0001")
                 .then(([t, hash]) => {
-                    document.getElementById("transferDiv").innerHTML = "Tx Hash -> " + hash;
+                    document.getElementById("transferDiv").innerHTML = "<a href='https://explorer.harmony.one/#/tx/" + hash + "'></a>";
                 })
                 .catch(e => {
                     alert(e.message);
@@ -51,7 +51,8 @@
     <div id="balanceDiv"></div></br>
     <button type="button" onclick="balance()">query balance</button>
     <div id="transferDiv"></div></br>
-    <button type="button" onclick="transfer()">Transfer</button>
+    <button type="button" onclick="transfer()">Transfer</button
+    <button type="button" onclick="explorer()">Transfer</button>
 
     </br>
 </body>
