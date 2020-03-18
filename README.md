@@ -4,7 +4,7 @@
 
 ```
 npm run install
-npm run webpack
+npm run serve
 ```
 
 ### Harmony Web3 API
