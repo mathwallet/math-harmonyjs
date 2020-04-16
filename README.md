@@ -87,5 +87,5 @@ npm run serve
 
 Download MathWallet Extesion
 
-https://medishares-cn.oss-cn-hangzhou.aliyuncs.com/extension/mathwalletplus-v2.0.4.zip
+https://medishares-cn.oss-cn-hangzhou.aliyuncs.com/extension/mathwalletplus-v2.1.9.zip
 
