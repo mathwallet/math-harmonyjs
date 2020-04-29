@@ -26,7 +26,7 @@ npm run serve
 	}
 	/***
 	 * Forget Identity
-	 * @return account {"address":"one1...","name":"cc1"}
+	 * @return true\false
 	 */
 	async forgetIdentity() {
 		// sign out
